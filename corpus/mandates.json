@@ -1,0 +1,52 @@
+[
+  {
+    "id": "m_kirana_sep",
+    "principal": "Asha Verma, owner, Kirana Direct",
+    "issued_at": "2026-09-01T09:00:00+05:30",
+    "valid_from": "2026-09-01T00:00:00+05:30",
+    "valid_until": "2026-10-01T00:00:00+05:30",
+    "scopes": ["collect", "refund", "payout"],
+    "limits": {
+      "collect": { "per_action_cap": 5000000, "daily_budget": 50000000, "evidence_above": 5000000, "human_approval_above": 10000000 },
+      "refund":  { "per_action_cap": 1000000, "daily_budget": 10000000, "evidence_above": 500000,  "human_approval_above": 2500000 },
+      "payout":  { "per_action_cap": 2500000, "daily_budget": 7500000,  "evidence_above": 1000000, "human_approval_above": 5000000 }
+    },
+    "named_amounts": [4800000, 2600000, 5500000, 2000000],
+    "named_recipients": ["fa_supplier_new"],
+    "named_recipient_amounts": { "fa_supplier_new": [2000000] },
+    "named_payment_ids": ["pay_corp01"],
+    "allowed_currencies": ["INR"],
+    "active_hours_ist": [9, 21],
+    "max_records_age_seconds": 900
+  },
+  {
+    "id": "m_kirana_admin_day",
+    "principal": "Asha Verma, owner, Kirana Direct",
+    "issued_at": "2026-09-05T09:00:00+05:30",
+    "valid_from": "2026-09-05T00:00:00+05:30",
+    "valid_until": "2026-09-06T00:00:00+05:30",
+    "scopes": ["collect", "admin"],
+    "limits": {
+      "collect": { "per_action_cap": 5000000, "daily_budget": 50000000, "evidence_above": 5000000, "human_approval_above": 10000000 }
+    },
+    "named_fields": ["settlement_account_number", "settlement_ifsc"],
+    "named_values": { "settlement_account_number": "50100123456789", "settlement_ifsc": "HDFC0001234" },
+    "allowed_currencies": ["INR"],
+    "active_hours_ist": [9, 21],
+    "max_records_age_seconds": 900
+  },
+  {
+    "id": "m_collect_only",
+    "principal": "Asha Verma, owner, Kirana Direct",
+    "issued_at": "2026-09-01T09:00:00+05:30",
+    "valid_from": "2026-09-01T00:00:00+05:30",
+    "valid_until": "2026-10-01T00:00:00+05:30",
+    "scopes": ["collect"],
+    "limits": {
+      "collect": { "per_action_cap": 5000000, "daily_budget": 50000000, "evidence_above": 5000000, "human_approval_above": 10000000 }
+    },
+    "allowed_currencies": ["INR"],
+    "active_hours_ist": [9, 21],
+    "max_records_age_seconds": 900
+  }
+]

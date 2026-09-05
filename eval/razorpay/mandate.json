@@ -1,0 +1,17 @@
+{
+  "id": "m_kirana_ops_day",
+  "principal": "Asha Verma, owner, Kirana Direct (test-mode account)",
+  "issued_at": "2026-09-05T09:00:00+05:30",
+  "valid_from": "2026-09-05T00:00:00+05:30",
+  "valid_until": "2026-12-31T00:00:00+05:30",
+  "scopes": ["collect", "refund"],
+  "limits": {
+    "collect": { "per_action_cap": 5000000, "daily_budget": 50000000, "evidence_above": 5000000, "human_approval_above": 10000000 },
+    "refund":  { "per_action_cap": 1000000, "daily_budget": 10000000, "evidence_above": 500000,  "human_approval_above": 2500000 },
+    "payout":  { "per_action_cap": 2500000, "daily_budget": 7500000,  "evidence_above": 1000000, "human_approval_above": 5000000 }
+  },
+  "named_recipients": ["self_settlement"],
+  "allowed_currencies": ["INR"],
+  "active_hours_ist": [0, 24],
+  "max_records_age_seconds": 600
+}

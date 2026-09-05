@@ -1,0 +1,20 @@
+{
+  "source": "fixture",
+  "fetched_at": "2026-09-05T10:50:00+05:30",
+  "payments": [
+    { "id": "pay_cap01",  "status": "captured",   "amount": 250000,  "amount_refunded": 0,      "currency": "INR", "customer_id": "cust_asha",  "captured_at": "2026-09-04T18:12:00+05:30" },
+    { "id": "pay_cap02",  "status": "captured",   "amount": 1200000, "amount_refunded": 0,      "currency": "INR", "customer_id": "cust_meera", "captured_at": "2026-09-04T19:40:00+05:30" },
+    { "id": "pay_cap03",  "status": "captured",   "amount": 1500000, "amount_refunded": 0,      "currency": "INR", "customer_id": "cust_ravi",  "captured_at": "2026-09-05T09:05:00+05:30" },
+    { "id": "pay_cap04",  "status": "captured",   "amount": 900000,  "amount_refunded": 600000, "currency": "INR", "customer_id": "cust_dev",   "captured_at": "2026-09-03T11:30:00+05:30" },
+    { "id": "pay_ref01",  "status": "refunded",   "amount": 400000,  "amount_refunded": 400000, "currency": "INR", "customer_id": "cust_nila",  "captured_at": "2026-09-02T14:00:00+05:30" },
+    { "id": "pay_auth01", "status": "authorized", "amount": 200000,  "amount_refunded": 0,      "currency": "INR", "customer_id": "cust_asha" },
+    { "id": "pay_fail01", "status": "failed",     "amount": 700000,  "amount_refunded": 0,      "currency": "INR", "customer_id": "cust_kabir" },
+    { "id": "pay_corp01", "status": "captured",   "amount": 4800000, "amount_refunded": 0,      "currency": "INR", "customer_id": "cust_corp",  "captured_at": "2026-09-01T12:00:00+05:30" }
+  ],
+  "counterparties": [
+    { "fund_account_id": "fa_courier",    "contact_id": "cont_swift",  "name": "Swift Couriers",        "first_seen": "2026-03-02T00:00:00+05:30", "payouts_count": 27 },
+    { "fund_account_id": "fa_packaging",  "contact_id": "cont_patel",  "name": "Patel Packaging",       "first_seen": "2026-05-14T00:00:00+05:30", "payouts_count": 8 },
+    { "fund_account_id": "fa_rent",       "contact_id": "cont_rent",   "name": "Shop rent, landlord",   "first_seen": "2026-01-05T00:00:00+05:30", "payouts_count": 8 },
+    { "fund_account_id": "fa_freelancer", "contact_id": "cont_design", "name": "Label design freelancer","first_seen": "2026-07-20T00:00:00+05:30", "payouts_count": 2 }
+  ]
+}

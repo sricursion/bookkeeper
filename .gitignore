@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.env
+API_KEY.txt
+ledger.jsonl
+*.ledger.jsonl
+.DS_Store
+# kept local: told in the pitch video and the submission form, not in the repository
+WHAT_BROKE.md
+docs/PITCH.md
+docs/SUBMISSION.md
+Thumbs.db
