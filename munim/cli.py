@@ -46,6 +46,46 @@ def cmd_verify(args: argparse.Namespace) -> int:
     return 0 if result.ok else 1
 
 
+def cmd_show(args: argparse.Namespace) -> int:
+    """Print a ledger the way a person reads it: one block per entry, clauses listed, chain shown."""
+    from .money import format_amount
+
+    ledger = Ledger(args.ledger)
+    verify = ledger.verify()
+    for entry in ledger.entries():
+        p = entry.payload
+        chain = f"#{entry.seq}  {entry.prev_hash[:10]}.. -> {entry.hash[:10]}.."
+        if entry.kind == "episode":
+            print(f"{chain}  EPISODE")
+            for key in ("task", "principal", "query"):
+                if p.get(key):
+                    print(f"    {key}: {str(p[key])[:160]}")
+            m = p.get("mandate") or {}
+            if m:
+                print(f"    mandate {m.get('id')}: scopes={m.get('scopes')} named_recipients={m.get('named_recipients')} named_amounts={m.get('named_amounts')}")
+        elif entry.kind == "decision":
+            a = p["action"]
+            amount = f" {format_amount(p['amount'], p.get('currency'))}" if p.get("amount") is not None else ""
+            target = f" -> {p['target']}" if p.get("target") else ""
+            flags = " DEGRADED" if p.get("degraded") else ""
+            dup = f" duplicate of #{p['duplicate_of']}" if p.get("duplicate_of") is not None else ""
+            print(f"{chain}  {p['disposition'].upper():6} {a['kind']}{amount}{target}{flags}{dup}")
+            if args.verbose:
+                print(f"    params: {json.dumps(a['params'], ensure_ascii=False)[:200]}")
+                print(f"    rationale (agent, not evaluated): {a.get('rationale', '')[:120]}")
+            for c in p.get("clauses", []):
+                if c["outcome"] in ("hold", "deny") or args.verbose:
+                    print(f"    {c['id']} {c['outcome']:5} {c['name']}: {c['detail'][:150]}")
+        elif entry.kind == "execution":
+            r = p.get("result") or {}
+            status = "failed: " + str(r.get("error"))[:120] if r.get("error") else f"executed{(' ' + str(r.get('result_id'))) if r.get('result_id') else ''}"
+            print(f"{chain}  EXECUTION {r.get('tool', '')} {status}")
+        else:
+            print(f"{chain}  {entry.kind}")
+    print(("chain intact: " if verify.ok else "CHAIN BROKEN: ") + verify.detail)
+    return 0 if verify.ok else 1
+
+
 def cmd_corpus(args: argparse.Namespace) -> int:
     corpus_dir = Path(args.corpus)
     ledger_path = Path(args.ledger) if args.ledger else Path(tempfile.mkdtemp()) / "corpus.ledger.jsonl"
@@ -91,6 +131,11 @@ def main(argv: list[str] | None = None) -> int:
     vf = sub.add_parser("verify", help="check a ledger's hash chain")
     vf.add_argument("ledger")
     vf.set_defaults(func=cmd_verify)
+
+    sh = sub.add_parser("show", help="print a ledger the way a person reads it")
+    sh.add_argument("ledger")
+    sh.add_argument("-v", "--verbose", action="store_true", help="print every clause and the action params")
+    sh.set_defaults(func=cmd_show)
 
     cp = sub.add_parser("corpus", help="run the decision corpus and compare with expectations")
     cp.add_argument("--corpus", default=str(CORPUS_DIR))

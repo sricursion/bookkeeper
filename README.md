@@ -169,6 +169,7 @@ refuse anything else.
 python -m munim corpus                                            # the decision corpus
 python -m munim evaluate action.json --mandate m.json --records r.json  # one action
 python -m munim verify ledger.jsonl                               # check a chain
+python -m munim show -v runs/razorpay/mcp-clean-t04/t04-ticket-legit.jsonl   # read a ledger, every clause
 .venv/Scripts/python eval/agentdojo/run.py --goal-matrix          # 144 pairs, no model
 .venv/Scripts/python eval/agentdojo/run.py --limit 3              # 27-pair live pilot
 .venv/Scripts/python eval/razorpay/agent.py --backend sim         # 13 tasks, simulated
@@ -199,4 +200,4 @@ tools.
 
 ## License
 
-MIT.
+GNU General Public License v3.0 or later. See [LICENSE](LICENSE).
